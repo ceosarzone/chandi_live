@@ -14,6 +14,11 @@
 
     RewriteEngine On
 
+    # Serve environment-aware crawler rules through the application.
+    RewriteRule ^robots\.txt$ index.php [L]
+    RewriteCond %{HTTP_HOST} ^www\.chandi\.live$ [NC]
+    RewriteRule ^ https://chandi.live%{REQUEST_URI} [R=301,L]
+
     # The local repository-root gateway is the only subdirectory entry point.
     # THE_REQUEST stays unchanged by internal public asset rewrites.
     RewriteCond %{THE_REQUEST} "\s/+chandilive/public(?:[/\s?])" [NC]
