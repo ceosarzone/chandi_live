@@ -31,7 +31,15 @@ try { document.documentElement.dataset.theme = localStorage.getItem('chandi.them
 @if($errors->any())<div class="notice error" role="alert"><strong>Please check these fields.</strong><ul>@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul></div>@endif
 @yield('content') @isset($slot){{ $slot }}@endisset
 </main>
-<footer class="market-footer"><div class="footer-bottom"><span>© {{ now('Asia/Karachi')->year }} CHANDI.LIVE · Silver markets, in focus.</span><div><a href="{{ url('/') }}#sources">Data sources</a><a href="{{ url('/privacy-policy') }}">Privacy</a><a href="{{ url('/terms-and-conditions') }}">Terms</a><a href="{{ url('/disclaimer') }}">Disclaimer</a></div></div><p class="disclosure">Prices are informational and may be delayed. Converted benchmarks exclude local premiums, making charges and taxes. Always check the source timestamp and confirm the actual quotation before transacting.</p></footer>
+<footer class="market-footer">
+<div class="footer-bottom"><span>© {{ now('Asia/Karachi')->year }} CHANDI.LIVE · Silver markets, in focus.</span><div><a href="{{ url('/') }}#sources">Data sources</a><a href="{{ url('/privacy-policy') }}">Privacy</a><a href="{{ url('/terms-and-conditions') }}">Terms</a><a href="{{ url('/disclaimer') }}">Disclaimer</a></div></div>
+<div class="visitor-counter" title="Cumulative recorded daily sessions. A session counts once per day; returning visitors on another day may count again. Do Not Track requests and recognized bots are excluded from new counts.">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 4v2"/></svg>
+    <span>Total visitors <strong data-visitor-total>{{ number_format(app(\App\Services\Analytics::class)->totalVisitors()) }}</strong></span>
+    <span class="visitor-counter-note">Recorded daily sessions</span>
+</div>
+<p class="disclosure">Prices are informational and may be delayed. Converted benchmarks exclude local premiums, making charges and taxes. Always check the source timestamp and confirm the actual quotation before transacting.</p>
+</footer>
 <div id="offline-notice" class="offline-notice" hidden role="status">You’re offline. Displayed data may be outdated. Reconnect to refresh.</div>@if(request()->is('silver-calculator'))
 @livewireScripts(['url'=>url('/livewire/livewire.min.js')])
 <script>

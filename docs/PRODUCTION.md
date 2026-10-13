@@ -30,3 +30,7 @@ For rollback, restore a previously verified code revision and its matching asset
 ## Remaining optional configuration
 
 SMTP and administrator access were not provisioned: this release is a public market display with registration disabled. No mail was sent. The server's shared PHP/MariaDB version was retained; future runtime upgrades should be coordinated with the hosting operator. The PSL source unit remains unconfirmed and is labelled accordingly.
+
+## Footer visitor counter
+
+The footer displays the cumulative number of recorded daily browser sessions, not unique people. Existing `platform_visit` records initialize `visitor_totals`; each new deduplicated event increments that total atomically in the same transaction. Repeated requests in the same session/day do not increment it. The aggregate survives the 90-day analytics retention cleanup. Successful public HTML visits count; chart/rates polling, private routes, recognized bot user agents and Do Not Track requests do not. The footer reads completed visits, so a newly recorded visit appears on the next page load. No IP addresses or new tracking cookies are stored. Clearing session cookies or returning on a later day can count again.
