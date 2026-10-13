@@ -1,5 +1,5 @@
 @extends('layouts.site')
-@section('title','Live silver prices · USA, Pakistan & India')
+@section('title','Live silver prices · USA, Pakistan and India')
 @section('description','Follow silver spot in USD, converted PKR and INR benchmarks, historical charts and the published Pakistan PSL quote.')
 @section('content')
 <div class="market-dashboard">

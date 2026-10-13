@@ -12,13 +12,15 @@ New visitors receive the light theme regardless of their operating-system prefer
 
 Project: `/Applications/XAMPP/xamppfiles/htdocs/chandilive`.
 
+Live application: **https://chandi.live/**. Source: **https://github.com/ceosarzone/chandi_live**.
+
 Local application: **http://localhost/chandilive/** (existing XAMPP Apache).
 
 Laravel 12.69.3 is used because the installed XAMPP PHP is 8.2.4. Laravel 13 requires PHP 8.3+ ([official release requirements](https://github.com/laravel/docs/blob/13.x/releases.md)). No PHP requirement was bypassed. Plan a Laravel 13 upgrade after the hosting runtime is upgraded and the test suite passes on it.
 
 Actual local database: MariaDB 10.4.28, via Laravel's native `mariadb` driver and `pdo_mysql`. There is no SQLite application/test database. This existing XAMPP server was preserved to avoid affecting neighboring projects. Production should use a supported MariaDB LTS release (10.11 or later). Development and tests use separately named databases `chandi_live` and `chandi_live_test`, with generated credentials stored only in ignored environment files.
 
-**Readiness verdict:** functional local MVP, with automated and browser verification. Public launch still requires the configuration and operator checks in [deployment](docs/DEPLOYMENT.md) and [acceptance](docs/ACCEPTANCE.md). Real spot, FX, daily reference history and PSL retrieval have been tested locally; external SMTP delivery and a production cutover have not been tested.
+**Readiness verdict:** market-only dashboard deployed and verified over production HTTPS. See [production operations](docs/PRODUCTION.md) for the Git deployment, runtime, scheduled refresh and rollback procedure. External SMTP and the paused dealer workflows are not enabled for launch.
 
 ## Current launch scope — 13 October 2026
 

@@ -1,3 +1,13 @@
+# Light theme and production deployment — 13 October 2026
+
+- Light is the default even with a dark operating-system preference. The accessible theme toggle persists across reloads/pages, synchronizes across tabs and recolours the current chart without changing its selection.
+- PHPUnit: **90 passed, 449 assertions**.
+- Local browser checks: **13 passed**, including six responsive sizes, chart controls, calculator and theme persistence/screenshots.
+- Live HTTPS browser checks: **4 passed**, covering real history in all three currencies, default light mode, persistent dark-mode preference, desktop/mobile screenshots, asset URLs, private-file denial, paused vendor routes, sitemap and robots.
+- Production `/health` returned `status=ok`, `database=mariadb`, `market=recent`.
+- Production history: **364 daily references**, with the unavailable 2025-12-10 record left absent. Real timestamped spot and PSL quotes are stored independently.
+- Production snapshots: `tests/browser/artifacts/production-desktop.png`, `theme-light-390.png`, `theme-dark-390.png`, `theme-light-1440.png`, `theme-dark-1440.png`.
+
 # Market dashboard update — 13 October 2026
 
 - PHPUnit: **90 passed, 449 assertions** against the dedicated MariaDB test database. New checks cover market-only route blocking, dated FX history conversion, idempotency, archive fallback/gaps, missing INR, invalid inputs, PSL raw-unit handling, fetch cooldown and last-good retention.
