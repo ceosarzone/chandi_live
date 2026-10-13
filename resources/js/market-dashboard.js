@@ -1,3 +1,4 @@
+import {historyAxis} from './chart-axis.js';
 let ChartClass;
 const labels = {USD:'International silver spot', PKR:'Pakistan · converted silver spot', INR:'India · converted silver spot', PSL:'Pakistan · published PSL quote'};
 const units = {oz:'troy ounce',tola:'tola',g:'gram','10g':'10 grams',kg:'kilogram'};
@@ -32,6 +33,8 @@ document.querySelectorAll('[data-market-chart]').forEach(root => {
    if(!response.ok)throw new Error('History unavailable');
    const data=await response.json(); if(pending.signal.aborted)return;
    const points=data.points, available=points.filter(p=>p.value!==null);
+   const windowNames={'24h':'Last 24 hours','7d':'Last 7 days','30d':'Last 30 days','90d':'Last 90 days','1y':'Last 12 months',max:'All available history'};
+   find('[data-chart-range]').textContent=windowNames[period]+(available.length?' · '+date(available[0].at)+' – '+date(available.at(-1).at):' · no observations');
    const suffix=data.currency+' / '+(currency==='PSL'?'published quote':units[unit]);
    if(chart){chart.destroy();chart=null;}
    empty.hidden=available.length>=2;
@@ -52,6 +55,7 @@ document.querySelectorAll('[data-market-chart]').forEach(root => {
     if(pending.signal.aborted)return;
     const ctx=find('canvas').getContext('2d');
     const colors=palette(), gradient=chartFill(ctx,colors);
+    const axis=historyAxis(period,available[0].at,available.at(-1).at);
     const datasets=['reference','recorded'].map(series=>{
      const plot=[];
      points.forEach((p,i)=>{
@@ -61,7 +65,7 @@ document.querySelectorAll('[data-market-chart]').forEach(root => {
      });
      return {label:series==='reference'?'Daily reference':'Recorded quote',data:plot,borderColor:series==='reference'?colors.reference:colors.recorded,backgroundColor:series==='reference'?gradient:'transparent',fill:series==='reference',borderWidth:2,pointRadius:series==='recorded'?2:0,pointHoverRadius:5,tension:0,spanGaps:false};
     });
-    chart=new ChartClass(ctx,{type:'line',data:{datasets},options:{responsive:true,maintainAspectRatio:false,animation:reduced?false:{duration:200},interaction:{mode:'nearest',intersect:false},plugins:{legend:{display:false},tooltip:{displayColors:false,callbacks:{title:items=>items[0].raw.resolution==='daily'?date(items[0].parsed.x)+' · daily reference':new Date(items[0].parsed.x).toLocaleString('en-GB',{timeZone:'UTC'})+' UTC',label:context=>suffix+': '+format(context.parsed.y),afterLabel:context=>context.raw.source}}},scales:{x:{type:'linear',grid:{display:false},border:{display:false},ticks:{color:colors.tick,maxRotation:0,maxTicksLimit:6,font:{size:11},callback:value=>new Date(value).toLocaleString('en-GB',{timeZone:'UTC',...(period==='24h'?{hour:'2-digit',minute:'2-digit'}:{day:'numeric',month:'short'})})}},y:{position:'right',border:{display:false},grid:{color:colors.grid},ticks:{color:colors.tick,font:{size:11},maxTicksLimit:6,callback:value=>Number(value).toLocaleString('en-US',{maximumFractionDigits:2})}}}}});
+    chart=new ChartClass(ctx,{type:'line',data:{datasets},options:{responsive:true,maintainAspectRatio:false,animation:reduced?false:{duration:200},interaction:{mode:'nearest',intersect:false},plugins:{legend:{display:false},tooltip:{displayColors:false,callbacks:{title:items=>items[0].raw.resolution==='daily'?date(items[0].parsed.x)+' · daily reference':new Date(items[0].parsed.x).toLocaleString('en-GB',{timeZone:'UTC'})+' UTC',label:context=>suffix+': '+format(context.parsed.y),afterLabel:context=>context.raw.source}}},scales:{x:{type:'linear',min:axis.min,max:axis.max,afterBuildTicks:axis.afterBuildTicks,grid:{display:false},border:{display:false},ticks:{color:colors.tick,maxRotation:0,maxTicksLimit:6,font:{size:11},callback:axis.label}},y:{position:'right',border:{display:false},grid:{color:colors.grid},ticks:{color:colors.tick,font:{size:11},maxTicksLimit:6,callback:value=>Number(value).toLocaleString('en-US',{maximumFractionDigits:2})}}}}});
    } else {
     empty.querySelector('h3').textContent=available.length?'First observation recorded.':'No observations in this period.';
     empty.querySelector('p').textContent=currency==='PSL'?'PSL history starts with collected source updates. Earlier PSL history is not available.':period==='24h'?'Intraday history grows as live observations arrive. Select 30D or 1Y for daily history.':'Choose another period to explore the available history.';
@@ -73,6 +77,7 @@ document.querySelectorAll('[data-market-chart]').forEach(root => {
    if(chart){chart.destroy();chart=null;} find('canvas').hidden=true;
    empty.hidden=false;empty.querySelector('h3').textContent='History is temporarily unavailable.';empty.querySelector('p').textContent='Select a period to retry.';
    for(const selector of ['value','low','high','count','coverage'])find(`[data-chart-${selector}]`).textContent='—';
+   find('[data-chart-range]').textContent='Selected period unavailable';
    find('[data-chart-change]').textContent='Comparison unavailable';find('[data-chart-note]').textContent='Unable to load the selected history. Please retry.';
    find('[data-chart-table]').replaceChildren();
   } finally {clearTimeout(timeout);if(controller===pending)root.removeAttribute('aria-busy');}
