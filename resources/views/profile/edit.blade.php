@@ -1,0 +1,3 @@
+@extends('layouts.site')
+@section('title','Account settings')
+@section('content')<div class="page-heading"><span class="eyebrow">ACCOUNT SECURITY</span><h1>Your account, in order.</h1></div><div class="cards two"><section class="panel">@include('profile.partials.update-profile-information-form')</section><section class="panel">@include('profile.partials.update-password-form')</section></div><section class="panel section">@include('profile.partials.delete-user-form')</section>@endsection

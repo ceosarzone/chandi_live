@@ -1,0 +1,5 @@
+@extends('layouts.site')
+@section('title',$post->title)
+@section('description',$post->meta_description ?: \Illuminate\Support\Str::limit(strip_tags($post->body),155))
+@push('head')<script type="application/ld+json">{!! json_encode(['@context'=>'https://schema.org','@type'=>'Article','headline'=>$post->title,'datePublished'=>$post->published_at->toIso8601String(),'dateModified'=>$post->updated_at->toIso8601String(),'author'=>['@type'=>'Person','name'=>$post->author->name]],JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT) !!}</script>@endpush
+@section('content')<div class="page-heading narrow"><span class="eyebrow">{{ $post->type }} · {{ $post->published_at->format('d M Y') }}</span><h1>{{ $post->title }}</h1><p>By {{ $post->author->name }}</p></div><article class="prose narrow preserve-lines">{{ $post->body }}</article>@endsection

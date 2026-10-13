@@ -1,0 +1,47 @@
+:root{--chart-reference:#a9c0da;--chart-recorded:#71d7bc;--chart-grid:#252c35;--chart-tick:#8793a3;--chart-fill:rgba(135,173,213,.17)}
+:root[data-theme="light"]{color-scheme:light;--bg:#f5f7fa;--surface:#fff;--surface2:#edf1f6;--border:#dbe2eb;--text:#172536;--muted:#58697c;--silver:#41566f;--chart-reference:#42698d;--chart-recorded:#168164;--chart-grid:#e7edf3;--chart-tick:#65778b;--chart-fill:rgba(75,123,167,.15)}
+.theme-toggle{display:inline-grid;place-items:center;width:42px;height:42px;flex:0 0 42px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text);padding:10px}
+.theme-toggle:hover{background:var(--surface2)}.theme-toggle svg{width:20px;height:20px}
+[data-theme="light"] [data-theme-sun],[data-theme="dark"] [data-theme-moon]{display:none}
+:root[data-theme="light"] a:hover{color:#174d73}
+:root[data-theme="light"] :is(a,button,input,select,textarea,summary):focus-visible{outline-color:#2f6c9e}
+:root[data-theme="light"] :is(.topline,.site-header){background:#fff;border-color:var(--border)}
+:root[data-theme="light"] :is(.wordmark,.financial,.quote-top h3,.market-method h3,.chart-value,.chart-stats strong){color:var(--text)}
+:root[data-theme="light"] :is(.wordmark-live,.desktop-nav,.eyebrow,.market-intro .eyebrow,.chart-main-heading .eyebrow,.quote-kind,.quote-unit,.quote-time,.quote-details summary,.country-headline small,.chart-unit-picker,.chart-legend,.chart-stats span,.chart-data,.market-conventions,.rate-source,.financial>span,.breadcrumb,label,.text-link,.chart-glyph){color:var(--muted)}
+:root[data-theme="light"] :is(.desktop-nav .current,.quote-unit a,.market-method a,.market-conventions a){color:#244f76}
+:root[data-theme="light"] .market-intro h1>span{color:#168164}
+:root[data-theme="light"] :is(.panel,.market-quote,.rate-grid){background:#fff;border-color:var(--border);box-shadow:0 3px 15px #26476904}
+:root[data-theme="light"] .psl-quote{background:#fffdf8;border-color:#e4dfd2}
+:root[data-theme="light"] .country-code{background:#eaf0f6;color:#46617c}
+:root[data-theme="light"] :is(.quote-details,.country-unit-list>div,.chart-stats,.market-conventions,.footer-bottom,.breakdown>div,.breakdown-row){border-color:var(--border)}
+:root[data-theme="light"] .status-tag{color:#52677e;border-color:#bdcbd9;background:#f0f4f8}
+:root[data-theme="light"] .status-tag.recent{color:#17674b;border-color:#bddccc;background:#ecf8f1}
+:root[data-theme="light"] :is(.status-tag.stale,.status-tag.demo){color:#815b16;border-color:#e2d1a7;background:#fff6df}
+:root[data-theme="light"] :is(.market-chart,.market-chart .chart-empty){background:#fff;border-color:var(--border)}
+:root[data-theme="light"] .chart-market-tabs{background:#f8fafc;border-color:var(--border)}
+:root[data-theme="light"] :is(.chart-market-tabs button,.market-chart .chart-periods button){color:#52667c}
+:root[data-theme="light"] :is(.chart-market-tabs button:hover,.market-chart .chart-periods button:hover){color:#234d75;background:#eaf0f6}
+:root[data-theme="light"] :is(.chart-market-tabs button.active,.market-chart .chart-periods button.active){background:#e4edf6;border-color:#bfd0e1;color:#204d74}
+:root[data-theme="light"] .chart-legend i{background:var(--chart-reference)}
+:root[data-theme="light"] .chart-legend i.recorded{background:var(--chart-recorded)}
+:root[data-theme="light"] .change-positive{color:#177553}
+:root[data-theme="light"] .change-negative{color:#b7404c}
+:root[data-theme="light"] :is(.chart-unit-picker select,input:not([type=checkbox]):not([type=radio]),select,textarea){color:#243c55;background:#fff;border-color:#c7d3e0}
+:root[data-theme="light"] input::placeholder,:root[data-theme="light"] textarea::placeholder{color:#68798b}
+:root[data-theme="light"] input[type=checkbox],:root[data-theme="light"] input[type=radio]{accent-color:#366689}
+:root[data-theme="light"] .button{background:#263f58;border-color:#263f58;color:#fff!important;box-shadow:none}
+:root[data-theme="light"] .button:hover{background:#365774}
+:root[data-theme="light"] .button.outline{background:#fff;border-color:#c5d0dc;color:#294966!important}
+:root[data-theme="light"] .button.outline:hover{background:#edf3f8}
+:root[data-theme="light"] :is(.mobile-nav,.workspace-nav,footer){background:#edf2f7;border-color:var(--border)}
+:root[data-theme="light"] :is(.market-dashboard [data-rates-refresh-status],.disclosure,.footer-bottom){color:#607288}
+:root[data-theme="light"] :is(.country-unit-list dd,.breakdown dd,em){color:#304960}
+:root[data-theme="light"] :is(th,td){border-color:#dce4ed;color:var(--text)}
+:root[data-theme="light"] th{background:#edf2f7;color:#40566e}
+:root[data-theme="light"] :is(.notice,.empty-state){background:#edf3f8;color:#344f69;border-color:#c4d3e2}
+:root[data-theme="light"] .notice.success{background:#ecf8f1;color:#17674b;border-color:#bddccc}
+:root[data-theme="light"] .notice.error{background:#fff0f0;color:#a2313e;border-color:#ebc0c6}
+:root[data-theme="light"] :is(.city-links>a,.filter-bar,.result-empty){background:#f0f4f8;border-color:var(--border);color:var(--text)}
+.header-actions{gap:12px}
+@media(max-width:767px){.site-header{gap:10px}.header-actions{gap:8px}.theme-toggle{width:38px;height:38px;flex-basis:38px;padding:9px}.site-header .wordmark{font-size:18px;gap:8px}.site-header .brand-icon{width:28px;height:28px}.site-header .menu-toggle{padding:8px 10px;gap:10px;min-height:38px}}
+:root[data-theme="light"] .chart-data summary{color:#42617f}

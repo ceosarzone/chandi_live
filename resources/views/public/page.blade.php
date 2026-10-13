@@ -1,0 +1,4 @@
+@extends('layouts.site')
+@section('title',$page->title)
+@section('description',$page->meta_description ?: \Illuminate\Support\Str::limit(strip_tags($page->body),155))
+@section('content')<div class="page-heading"><span class="eyebrow">THE PLATFORM</span><h1>{{ $page->title }}<span class="accent-dot">.</span></h1></div><article class="prose narrow preserve-lines">{{ $page->body }}</article>@if(in_array($page->slug,['contact','advertise']))<section class="panel narrow section"><h2>Reach the operating team.</h2>@if(!empty($siteSettings['contact_email']))<p><a href="mailto:{{ $siteSettings['contact_email'] }}">{{ $siteSettings['contact_email'] }}</a></p>@endif @if(!empty($siteSettings['contact_phone']))<p>{{ $siteSettings['contact_phone'] }}</p>@endif<x-enquiry-form/></section>@endif @endsection

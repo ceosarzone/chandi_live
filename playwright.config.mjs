@@ -1,0 +1,2 @@
+import { defineConfig } from '@playwright/test';
+export default defineConfig({testDir:'tests/browser',workers:1,timeout:30000,use:{baseURL:(process.env.CHANDI_BROWSER_URL||'http://127.0.0.1:8091').replace(/\/$/,'')+'/',headless:true,actionTimeout:10000,navigationTimeout:15000,launchOptions:{executablePath:process.env.CHANDI_CHROME_PATH || (process.platform==='darwin'?'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome':undefined)},screenshot:'only-on-failure'},reporter:[['list'],['json',{outputFile:'tests/browser/artifacts/results.json'}]]});

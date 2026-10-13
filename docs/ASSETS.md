@@ -1,0 +1,9 @@
+# Original image and identity assets
+
+`public/images/silver-hero.jpg` is illustrative platform artwork generated using the built-in imagegen tool, then converted to JPEG for this XAMPP runtime. Responsive 720-, 1024- and 1440-pixel variants are saved alongside it. It is not a photograph of inventory from a dealer. The selected original is retained in the local image-generation library. No stock image was scraped, hotlinked, or represented as a real listing.
+
+The generation prompt:
+
+> Use case: product-mockup. Asset type: hero artwork for CHANDI.LIVE physical silver market platform. Create a premium studio product photograph of three unbranded physical cast silver bullion bars stacked asymmetrically on a dark obsidian stone plinth, one subtle round silver coin beside them. Wide landscape composition. Large silver bars with beautifully brushed metal, slight realistic casting imperfections, clear rim highlights, dramatic softbox reflected in the surfaces. Silver and charcoal only, no gold. Almost black seamless background; elegant editorial financial publication aesthetic. Subjects placed toward center-right with dark negative space to the left. No text, no logos, no watermark. This is illustrative platform artwork, not an actual dealer's listed product.
+
+The hexagonal silver mark, favicon, wordmark treatment and social composition are original code-native artwork. `scripts/brand-assets.php` renders social/mobile bitmap derivatives, four PNG favicon sizes (16/32/48/64) and a matching multi-size `public/favicon.ico`. It uses local fonts for the social image; no font files are redistributed. Chart.js is MIT licensed; dependency license notices remain with their distributions. Screenshots show the working application; demo/test images do not substantiate any real dealer verification or collected payment.

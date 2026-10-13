@@ -1,0 +1,1 @@
+<button {{ $attributes->merge(['type'=>'button','class'=>'button outline']) }}>{{ $slot }}</button>

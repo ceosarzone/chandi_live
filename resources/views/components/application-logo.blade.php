@@ -1,0 +1,1 @@
+<svg {{ $attributes->merge(['class'=>'brand-icon']) }} viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="m18 3 14 8v14l-14 8-14-8V11L18 3Z" stroke="currentColor" stroke-width="1.5"/><path d="m11 15 7-4 7 4v7l-7 4-7-4v-7Z" fill="currentColor"/><path d="m18 11 7 4-7 4-7-4 7-4Z" fill="#fff" opacity=".4"/></svg>

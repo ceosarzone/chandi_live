@@ -1,0 +1,22 @@
+# Local XAMPP subdirectory entry point. Production still uses public/ as its root.
+# Never serve application files, even when the requested file exists.
+Options -Indexes -MultiViews
+Require all granted
+DirectoryIndex index.php
+
+RewriteEngine On
+RewriteRule (^|/)\. - [F,END]
+RewriteRule ^(?:app|bootstrap|config|database|docs|node_modules|public|resources|routes|scripts|tests|vendor)(?:/|$) - [F,END,NC]
+# This maps only image files into storage/app/public, never the private storage tree.
+RewriteRule ^storage/(.*\.(?:jpg|jpeg|png|webp|gif))$ public/storage/$1 [END,NC]
+RewriteRule ^storage(?:/|$) - [F,END,NC]
+RewriteRule ^(?:artisan|composer\.(?:json|lock)|package(?:-lock)?\.json|phpunit\.xml|README\.md|.*\.(?:sql|log|bak|env))$ - [F,END,NC]
+
+# Only public static asset directories and specific public files are exposed.
+RewriteRule ^((?:build|images)/.*\.(?:css|js|jpg|jpeg|png|webp|gif|svg|ico|woff2?)|favicon\.(?:ico|svg)|robots\.txt)$ public/$1 [END,NC]
+
+RewriteCond %{HTTP:Authorization} .
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteCond %{HTTP:x-xsrf-token} .
+RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-Token}]
+RewriteRule ^ index.php [END]
